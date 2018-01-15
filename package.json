@@ -1,0 +1,9 @@
+{
+  "name": "meetup-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "meetup": "^0.1.0-SNAPSHOT"
+  }
+}
