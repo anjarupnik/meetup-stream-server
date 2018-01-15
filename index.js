@@ -15,12 +15,6 @@ io.on('connection', socket => {
 mup.stream("/2/rsvps", stream => {
   stream
     .on("data", item => {
-      const addRsvp = {
-         type: 'ADD_RSVP',
-         payload: item
-      }
-
-      io.emit('action', addRsvp)
 
       const arrayOfTopics = Object.keys(topicsCounter)
       arrayOfTopics.sort((topicA, topicB) => {
@@ -42,6 +36,13 @@ mup.stream("/2/rsvps", stream => {
       const topicNames = item.group.group_topics.map(topic => topic.topic_name)
 
       if (topicNames.includes('Software Development')) {
+        const addRsvp = {
+           type: 'ADD_RSVP',
+           payload: item
+        }
+
+        io.emit('action', addRsvp)
+        
         topicNames.forEach(name => {
           if (topicsCounter[name]) {
             topicsCounter[name]++
